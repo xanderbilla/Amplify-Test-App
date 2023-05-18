@@ -1,0 +1,42 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-testapp-dev-40408-authRole",
+      "UnauthRoleArn": "arn:aws:iam::954138568328:role/amplify-testapp-dev-40408-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::954138568328:role/amplify-testapp-dev-40408-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-testapp-dev-40408-deployment",
+      "UnauthRoleName": "amplify-testapp-dev-40408-unauthRole",
+      "StackName": "amplify-testapp-dev-40408",
+      "StackId": "arn:aws:cloudformation:ap-south-1:954138568328:stack/amplify-testapp-dev-40408/5a4f8cf0-f1de-11ed-bb6e-020038e1fe14",
+      "AmplifyAppId": "dhw0s4l5cgvxv"
+    },
+    "categories": {
+      "function": {
+        "formfunc": {
+          "deploymentBucketName": "amplify-testapp-dev-40408-deployment",
+          "s3Key": "amplify-builds/formfunc-764d526d464437385261-build.zip"
+        },
+        "userdbfunc": {
+          "deploymentBucketName": "amplify-testapp-dev-40408-deployment",
+          "s3Key": "amplify-builds/userdbfunc-7044796b57656c353075-build.zip"
+        }
+      },
+      "storage": {
+        "dynamo7dbf1653": {},
+        "acharyauserdbdev": {
+          "tableName": "acharyauserdb-dev",
+          "region": "ap-south-1",
+          "arn": "arn:aws:dynamodb:ap-south-1:954138568328:table/acharyauserdb-dev",
+          "streamArn": "arn:aws:dynamodb:ap-south-1:954138568328:table/acharyauserdb-dev/stream/2023-05-10T10:52:19.998",
+          "partitionKeyName": "userid",
+          "partitionKeyType": "S"
+        },
+        "userTest": {}
+      },
+      "api": {
+        "testApi": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "resourceName": "dynamo7dbf1653",
+  "tableName": "form",
+  "partitionKey": {
+    "fieldName": "id",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

@@ -1,0 +1,159 @@
+{
+  "api": {
+    "testApi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "formfunc"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "userdbfunc"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "auth": {},
+  "function": {
+    "formfunc": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "dynamo7dbf1653"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "userdbfunc": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "userTest"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_formfunc_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "formfunc"
+        }
+      ]
+    },
+    "AMPLIFY_function_formfunc_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "formfunc"
+        }
+      ]
+    },
+    "AMPLIFY_function_userdbfunc_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userdbfunc"
+        }
+      ]
+    },
+    "AMPLIFY_function_userdbfunc_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userdbfunc"
+        }
+      ]
+    },
+    "AMPLIFY_storage_acharyauserdbdev_arn": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "acharyauserdbdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_acharyauserdbdev_partitionKeyName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "acharyauserdbdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_acharyauserdbdev_partitionKeyType": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "acharyauserdbdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_acharyauserdbdev_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "acharyauserdbdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_acharyauserdbdev_streamArn": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "acharyauserdbdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_acharyauserdbdev_tableName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "acharyauserdbdev"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "acharyauserdbdev": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB",
+      "serviceType": "imported"
+    },
+    "dynamo7dbf1653": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    },
+    "userTest": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    }
+  }
+}
