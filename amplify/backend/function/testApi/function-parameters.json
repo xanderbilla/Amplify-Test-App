@@ -1,7 +1,7 @@
 {
   "permissions": {
     "storage": {
-      "dynamo7dbf1653": [
+      "testDB": [
         "create",
         "read",
         "update",

@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"11.1.1\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
+  "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.0.0\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
     "CloudWatchRule": {
       "Type": "String",
@@ -16,17 +16,17 @@
     "s3Key": {
       "Type": "String"
     },
-    "storagedynamo7dbf1653Name": {
+    "storagetestDBName": {
       "Type": "String",
-      "Default": "storagedynamo7dbf1653Name"
+      "Default": "storagetestDBName"
     },
-    "storagedynamo7dbf1653Arn": {
+    "storagetestDBArn": {
       "Type": "String",
-      "Default": "storagedynamo7dbf1653Arn"
+      "Default": "storagetestDBArn"
     },
-    "storagedynamo7dbf1653StreamArn": {
+    "storagetestDBStreamArn": {
       "Type": "String",
-      "Default": "storagedynamo7dbf1653StreamArn"
+      "Default": "storagetestDBStreamArn"
     }
   },
   "Conditions": {
@@ -59,12 +59,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "formfunc",
+            "testApi",
             {
               "Fn::Join": [
                 "",
                 [
-                  "formfunc",
+                  "testApi",
                   "-",
                   {
                     "Ref": "env"
@@ -82,14 +82,14 @@
             "REGION": {
               "Ref": "AWS::Region"
             },
-            "STORAGE_DYNAMO7DBF1653_NAME": {
-              "Ref": "storagedynamo7dbf1653Name"
+            "STORAGE_TESTDB_NAME": {
+              "Ref": "storagetestDBName"
             },
-            "STORAGE_DYNAMO7DBF1653_ARN": {
-              "Ref": "storagedynamo7dbf1653Arn"
+            "STORAGE_TESTDB_ARN": {
+              "Ref": "storagetestDBArn"
             },
-            "STORAGE_DYNAMO7DBF1653_STREAMARN": {
-              "Ref": "storagedynamo7dbf1653StreamArn"
+            "STORAGE_TESTDB_STREAMARN": {
+              "Ref": "storagetestDBStreamArn"
             }
           }
         },
@@ -99,7 +99,7 @@
             "Arn"
           ]
         },
-        "Runtime": "nodejs16.x",
+        "Runtime": "nodejs18.x",
         "Layers": [],
         "Timeout": 25
       }
@@ -110,12 +110,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "testappLambdaRolecd044166",
+            "testappLambdaRoleb813a485",
             {
               "Fn::Join": [
                 "",
                 [
-                  "testappLambdaRolecd044166",
+                  "testappLambdaRoleb813a485",
                   "-",
                   {
                     "Ref": "env"
@@ -219,14 +219,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storagedynamo7dbf1653Arn"
+                  "Ref": "storagetestDBArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storagedynamo7dbf1653Arn"
+                        "Ref": "storagetestDBArn"
                       },
                       "index/*"
                     ]

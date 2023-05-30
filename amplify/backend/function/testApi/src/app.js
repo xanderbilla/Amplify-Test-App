@@ -10,9 +10,9 @@ See the License for the specific language governing permissions and limitations 
 /* Amplify Params - DO NOT EDIT
 	ENV
 	REGION
-	STORAGE_DYNAMO7DBF1653_ARN
-	STORAGE_DYNAMO7DBF1653_NAME
-	STORAGE_DYNAMO7DBF1653_STREAMARN
+	STORAGE_TESTDB_ARN
+	STORAGE_TESTDB_NAME
+	STORAGE_TESTDB_STREAMARN
 Amplify Params - DO NOT EDIT */
 
 const express = require('express')
@@ -31,54 +31,65 @@ app.use(function(req, res, next) {
   next()
 });
 
-
 const AWS = require('aws-sdk');
-const dynamodb = new AWS.DynamoDB.DocumentClient();
-const table = process.env.STORAGE_DYNAMO7DBF1653_NAME
+const docClient = new AWS.DynamoDB.DocumentClient();
+const table = process.env.STORAGE_TESTDB_NAME
 
-function id() {
-  return Math.random().toString(36).substring(2) + Date.now().toString(36)
+const itemId = () => {
+  const currentDate = new Date();
+  const datePart = currentDate.toISOString().slice(0, 10).replace(/-/g, '');
+  const timePart = currentDate.toTimeString().slice(0, 8).replace(/:/g, '');
+  const countPart = Math.floor(Math.random() * 256).toString(16).padStart(2, '0');
+
+  return `${datePart}${timePart}${countPart}`;
 }
 
-/****************************
-* Example post method *
-****************************/
+/**********************
+ * Retrieve All Items *
+ **********************/
 
-app.post('/contact', function (req, res) {
-  const item = {
-    id: id(),
-    name: req.body.name,
-    email: req.body.email,
-    message: req.body.message
-  };
+app.get('/items', function(req, res) {
   const params = {
-    TableName: table,
-    Item: item
+    TableName: table
   };
 
-  dynamodb.put(params, function (err, data) {
+  docClient.scan(params, function(err, data) {
     if (err) {
-      res.json({ err });
+      console.error('Error retrieving items from DynamoDB', err);
+      res.status(500).json({ error: 'Failed to retrieve items from DynamoDB' });
     } else {
-      res.json({ success: "Successfully Created" });
+      res.json(data.Items);
     }
   });
 });
 
 /****************************
-* Example get method *
+* Example post method *
 ****************************/
 
-app.get('/contact', function(req, res) {
-  const params = {
-    TableName: table
+app.post('/items', function(req, res) {
+  const { name, email, phone, married } = req.body;
+  const id = itemId();
+
+  const item = {
+    id,
+    name,
+    email,
+    phone,
+    married: married ? true : false
   };
 
-  dynamodb.scan(params, function(err, data) {
+  const params = {
+    TableName: table,
+    Item: item
+  };
+
+  docClient.put(params, function(err, data) {
     if (err) {
-      res.status(500).json({ message: 'Failed to retrieve contacts' });
+      console.error('Error saving item to DynamoDB:', err);
+      res.status(500).json({ error: 'Failed to save item to DynamoDB' });
     } else {
-      res.json(data.Items);
+      res.json({ success: 'Post call succeeded!', url: req.url, body: item });
     }
   });
 });

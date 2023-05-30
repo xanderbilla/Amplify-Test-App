@@ -8,40 +8,41 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "formfunc"
-        },
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "userdbfunc"
+          "resourceName": "testApi"
         }
       ],
       "providerPlugin": "awscloudformation",
       "service": "API Gateway"
     }
   },
-  "auth": {},
-  "function": {
-    "formfunc": {
-      "build": true,
-      "dependsOn": [
-        {
-          "attributes": [
-            "Name",
-            "Arn",
-            "StreamArn"
-          ],
-          "category": "storage",
-          "resourceName": "dynamo7dbf1653"
-        }
-      ],
+  "auth": {
+    "testappf3f12d92": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
       "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "userdbfunc": {
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "testApi": {
       "build": true,
       "dependsOn": [
         {
@@ -51,7 +52,7 @@
             "StreamArn"
           ],
           "category": "storage",
-          "resourceName": "userTest"
+          "resourceName": "testDB"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -59,99 +60,25 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_formfunc_deploymentBucketName": {
+    "AMPLIFY_function_testApi_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "formfunc"
+          "resourceName": "testApi"
         }
       ]
     },
-    "AMPLIFY_function_formfunc_s3Key": {
+    "AMPLIFY_function_testApi_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "formfunc"
-        }
-      ]
-    },
-    "AMPLIFY_function_userdbfunc_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "userdbfunc"
-        }
-      ]
-    },
-    "AMPLIFY_function_userdbfunc_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "userdbfunc"
-        }
-      ]
-    },
-    "AMPLIFY_storage_acharyauserdbdev_arn": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "acharyauserdbdev"
-        }
-      ]
-    },
-    "AMPLIFY_storage_acharyauserdbdev_partitionKeyName": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "acharyauserdbdev"
-        }
-      ]
-    },
-    "AMPLIFY_storage_acharyauserdbdev_partitionKeyType": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "acharyauserdbdev"
-        }
-      ]
-    },
-    "AMPLIFY_storage_acharyauserdbdev_region": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "acharyauserdbdev"
-        }
-      ]
-    },
-    "AMPLIFY_storage_acharyauserdbdev_streamArn": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "acharyauserdbdev"
-        }
-      ]
-    },
-    "AMPLIFY_storage_acharyauserdbdev_tableName": {
-      "usedBy": [
-        {
-          "category": "storage",
-          "resourceName": "acharyauserdbdev"
+          "resourceName": "testApi"
         }
       ]
     }
   },
   "storage": {
-    "acharyauserdbdev": {
-      "dependsOn": [],
-      "providerPlugin": "awscloudformation",
-      "service": "DynamoDB",
-      "serviceType": "imported"
-    },
-    "dynamo7dbf1653": {
-      "providerPlugin": "awscloudformation",
-      "service": "DynamoDB"
-    },
-    "userTest": {
+    "testDB": {
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB"
     }

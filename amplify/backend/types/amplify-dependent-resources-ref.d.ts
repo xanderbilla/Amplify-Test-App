@@ -4,14 +4,10 @@ export type AmplifyDependentResourcesAttributes = {
       "ApiId": "string",
       "ApiName": "string",
       "RootUrl": "string"
-    },
-    "testapp": {
-      "GraphQLAPIEndpointOutput": "string",
-      "GraphQLAPIIdOutput": "string"
     }
   },
   "auth": {
-    "testapp4ff1e71f4ff1e71f": {
+    "testappf3f12d92": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
       "IdentityPoolId": "string",
@@ -19,27 +15,10 @@ export type AmplifyDependentResourcesAttributes = {
       "UserPoolArn": "string",
       "UserPoolId": "string",
       "UserPoolName": "string"
-    },
-    "userPoolGroups": {
-      "AdminGroupRole": "string"
     }
   },
   "function": {
-    "formfunc": {
-      "Arn": "string",
-      "LambdaExecutionRole": "string",
-      "LambdaExecutionRoleArn": "string",
-      "Name": "string",
-      "Region": "string"
-    },
-    "testapp4ff1e71f4ff1e71fPostConfirmation": {
-      "Arn": "string",
-      "LambdaExecutionRole": "string",
-      "LambdaExecutionRoleArn": "string",
-      "Name": "string",
-      "Region": "string"
-    },
-    "userdbfunc": {
+    "testApi": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",
@@ -48,15 +27,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
-    "dynamo7dbf1653": {
-      "Arn": "string",
-      "Name": "string",
-      "PartitionKeyName": "string",
-      "PartitionKeyType": "string",
-      "Region": "string",
-      "StreamArn": "string"
-    },
-    "userTest": {
+    "testDB": {
       "Arn": "string",
       "Name": "string",
       "PartitionKeyName": "string",

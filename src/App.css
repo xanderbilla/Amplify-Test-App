@@ -1,14 +1,106 @@
-.App{
+.App {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #f3f4f6;
+  flex-direction: column;
+  gap: 20px;
+  overflow: scroll;
 }
 
-form{
+form {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 20px;
+  background-color: #fff;
+  padding: 40px;
+  height: 400px;
+  width: 600px;
+  border-radius: 24px;
+  box-shadow: 4px 11px 14px -3px rgba(0, 0, 0, 0.1);
+}
+
+input,
+button,
+select {
+  height: 40px;
+  font-size: 18px;
+  width: 300px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 24px;
+  background-color: #f0efef;
+}
+
+input:placeholder, option {
+  opacity: 0.5;
+}
+
+input:focus, select::focus {
+  outline: none;
+}
+
+button {
+  width: 100px;
+  background-color: teal;
+  font-weight: 600;
+  color: #fff;
+}
+
+span{
+  font-size: 32px;
+  font-weight: 700;
+  opacity: 0.7;
+}
+
+table{
+  height: auto;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #fff;
+  padding: 40px;
+  box-shadow: 4px 11px 14px -3px rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 18px;
+}
+
+/* Add styles for the table header */
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+/* Add styles for the table rows */
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Add styles for the action buttons */
+button {
+  padding: 4px 8px;
+  margin-right: 4px;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
